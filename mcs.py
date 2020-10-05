@@ -12,7 +12,7 @@ class Graph(object):
         self.adjmat[w][v] = 1
 
 
-def enumerate_c_cliques(C, P, D, S, T, G_vertices, G_adj, c_edges):
+def enumerate_c_cliques(C, P, D, S, T, G_adj, c_edges):
     if not P and not S:
         print(C)
         return
@@ -31,7 +31,7 @@ def enumerate_c_cliques(C, P, D, S, T, G_vertices, G_adj, c_edges):
                     P_.add(v)
                 D_.remove(v)
         C.add(u)
-        enumerate_c_cliques(C, P_ & N, D_ & N, S_ & N, T, G_vertices, G_adj, c_edges)
+        enumerate_c_cliques(C, P_ & N, D_ & N, S_ & N, T, G_adj, c_edges)
         C.remove(u)
         S.add(u)
 
@@ -81,7 +81,7 @@ def find_maximal_common_subgraphs(F, H, connected=False):
                     P.add(v)
             else:
                 D.add(v)
-        enumerate_c_cliques(set([u]), P, D, S, T, G_vertices, G_adj, c_edges)
+        enumerate_c_cliques(set([u]), P, D, S, T, G_adj, c_edges)
         T.add(u)
 
 
