@@ -24,7 +24,7 @@ def enumerate_c_cliques(C, P, D, S, T, G_vertices, G_adj, c_edges):
         S_ = set(S)
         N = G_adj[u]
         for v in list(D_):
-            if frozenset([v, u]) in c_edges:
+            if (v, u) in c_edges:
                 if v in T:
                     S_.add(v)
                 else:
@@ -61,7 +61,8 @@ def find_maximal_common_subgraphs(F, H, connected=False):
             G_adj[(u1, u2)].add((w1, w2))
             G_adj[(w1, w2)].add((u1, u2))
             if F.adjmat[u1][w1]:
-                c_edges.add(frozenset([(u1, u2), (w1, w2)]))
+                c_edges.add(((u1, u2), (w1, w2)))
+                c_edges.add(((w1, w2), (u1, u2)))
     #    print(G_vertices)
     #    print(G_adj)
     #    print(c_edges)
@@ -73,7 +74,7 @@ def find_maximal_common_subgraphs(F, H, connected=False):
         S = set()
         N = G_adj[u]
         for v in N:
-            if frozenset([u, v]) in c_edges:
+            if (u, v) in c_edges:
                 if v in T:
                     S.add(v)
                 else:
