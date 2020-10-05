@@ -21,7 +21,7 @@ def enumerate_c_cliques(C, P, D, S, T, G_vertices, G_adj, c_edges):
         P.remove(u)
         P_ = set(P)
         D_ = set(D)
-        s_ = set(S)
+        S_ = set(S)
         N = G_adj[u]
         for v in list(D_):
             if frozenset([v, u]) in c_edges:
