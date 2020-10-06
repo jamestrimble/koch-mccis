@@ -16,8 +16,7 @@ def enumerate_c_cliques(C, P, D, S, T, G_adj, c_edges):
     if not P and not S:
         print(C)
         return
-    uu = list(P)
-    for i, u in enumerate(uu):
+    for u in list(P):
         P.remove(u)
         P_ = set(P)
         D_ = set(D)
