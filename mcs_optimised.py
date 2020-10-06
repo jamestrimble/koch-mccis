@@ -45,9 +45,6 @@ def find_maximal_common_subgraphs(F, H, connected=False):
         for v in F_vertices:
             for w in H_vertices:
                 G_vertices.append((v, w))
-    G_vertex_to_g_vertex = {}
-    for i, v in enumerate(G_vertices):
-        G_vertex_to_g_vertex[v] = i
     # g is isomorphic to G, but has integers instead of vertex pairs as vertices
     g_adj = {v: set() for v in range(len(G_vertices))}
     g_c_edges = set()
@@ -61,11 +58,11 @@ def find_maximal_common_subgraphs(F, H, connected=False):
                 continue
             if F.adjmat[u1][w1] != H.adjmat[u2][w2]:
                 continue
-            g_adj[G_vertex_to_g_vertex[(u1, u2)]].add(G_vertex_to_g_vertex[(w1, w2)])
-            g_adj[G_vertex_to_g_vertex[(w1, w2)]].add(G_vertex_to_g_vertex[(u1, u2)])
+            g_adj[i].add(j)
+            g_adj[j].add(i)
             if F.adjmat[u1][w1]:
-                g_c_edges.add((G_vertex_to_g_vertex[(u1, u2)], G_vertex_to_g_vertex[(w1, w2)]))
-                g_c_edges.add((G_vertex_to_g_vertex[(w1, w2)], G_vertex_to_g_vertex[(u1, u2)]))
+                g_c_edges.add((i, j))
+                g_c_edges.add((j, i))
 
     T = set()
     for u in range(len(G_vertices)):
